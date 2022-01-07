@@ -1,25 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {MainPage} from "./pages/MainPage";
+import {MessagePage} from "./pages/MessagePage";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {Navbar} from "./components/Navbar";
+import {Footer} from "./components/Footer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+                <div className="d-flex flex-column bg-light min-vh-100">
+                    <Navbar/>
+                    <main className="container flex-fill my-3">
+                        <Routes>
+                            <Route path={`/messages`} exact element={<MainPage/>}/>
+                            <Route path={`/messages/:message_id`} exact element={<MessagePage/>}/>
+                        </Routes>
+                    </main>
+                    <Footer/>
+                </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
