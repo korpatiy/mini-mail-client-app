@@ -1,14 +1,14 @@
 import React, {useState} from 'react'
 import {API} from "../controllers/controllers";
 
-export const ClapButton = ({id, clapsCount, setIsListUpdated}) => {
+export const ClapButton = ({id, clapsCount, setIsCardUpdated}) => {
     const [loading, setLoading] = useState(false);
 
     const onClap = async () => {
         setLoading(true);
         try {
             await API.clapMessage(id);
-            setIsListUpdated(true);
+            setIsCardUpdated(true);
         } catch (e) {
         }
         setLoading(false);

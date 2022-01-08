@@ -5,7 +5,7 @@ import {API} from "../controllers/controllers";
 
 export const MainPage = () => {
     const [messageList, setMessageList] = useState([]);
-    const [isListUpdated, setIsListUpdated] = useState(false);
+    const [isCardUpdated, setIsCardUpdated] = useState(false);
 
     const getMessageList = async () => {
         try {
@@ -21,16 +21,16 @@ export const MainPage = () => {
     }, [])
 
     useEffect(() => {
-        if (isListUpdated) {
+        if (isCardUpdated) {
             getMessageList();
-            setIsListUpdated(false);
+            setIsCardUpdated(false);
         }
-    }, [isListUpdated])
+    }, [isCardUpdated])
 
     return (
         <>
-            <SendForm setIsListUpdated={setIsListUpdated}/>
-            <MessageList messageList={messageList} setIsListUpdated={setIsListUpdated}/>
+            <SendForm setIsCardUpdated={setIsCardUpdated}/>
+            <MessageList messageList={messageList} setIsCardUpdated={setIsCardUpdated}/>
         </>
     )
 }

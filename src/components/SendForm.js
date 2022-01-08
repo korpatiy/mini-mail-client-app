@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {useForm} from 'react-hook-form';
 import {API} from "../controllers/controllers";
 
-export const SendForm = ({setIsListUpdated}) => {
+export const SendForm = ({setIsCardUpdated}) => {
     const {handleSubmit, watch, setValue, reset} = useForm({defaultValues: {sender: '', message: ''}});
     const [sendLoading, setSendLoading] = useState(false);
     const [sentMessage, setSentMessage] = useState(false);
@@ -14,12 +14,12 @@ export const SendForm = ({setIsListUpdated}) => {
         setSendLoading(true);
         try {
             await API.postMessage({author: data.sender, text: data.message});
-            setIsListUpdated(true);
+            setIsCardUpdated(true);
             setSentMessage(true);
             reset();
         } catch (e) {
-            const result = e.response.data.map(item => (
-                <div>{item.message}</div>
+            const result = e.response.data.map((item, index) => (
+                <div key={index}>{item.message}</div>
             ))
             setErrorMessage(result)
         }
@@ -51,7 +51,9 @@ export const SendForm = ({setIsListUpdated}) => {
                                   placeholder="Текст сообщения"/>
                     </div>
                     <div className="d-flex">
-                        <button type='submit' className="btn btn-outline-success ms-auto">✏️ Отправить</button>
+                        <button type='submit' className="btn btn-outline-success ms-auto" disabled={sendLoading}>✏️
+                            Отправить
+                        </button>
                     </div>
                 </div>
             </fieldset>

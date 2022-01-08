@@ -19,8 +19,8 @@ export const API = {
         return await instance.post('api/messages', message).then(res => res.data);
     },
 
-    async getMessage (id) {
-        return await instance.get(`/api/messages/${id}`);
+    async getMessage(id) {
+        return await instance.get(`/api/messages/${id}`).then(res => res.data);
     },
 }
 

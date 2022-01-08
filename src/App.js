@@ -14,7 +14,7 @@ function App() {
                     <main className="container flex-fill my-3">
                         <Routes>
                             <Route path={`/messages`} exact element={<MainPage/>}/>
-                            <Route path={`/messages/:message_id`} exact element={<MessagePage/>}/>
+                            <Route path={`/messages/:messageId`} exact element={<MessagePage/>}/>
                         </Routes>
                     </main>
                     <Footer/>
